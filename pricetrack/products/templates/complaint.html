@@ -1,0 +1,21 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block title %}Submit Complaint {% endblock %}
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'products/complaint.css' %}">
+{% endblock %}
+
+  {% block content %}
+  {% include 'side.html' %}
+  <main>
+    <form method="post">
+      {% csrf_token %}
+      <h2>Submit a Complaint</h2>
+      {{form.as_p}}
+      <button type="submit" class="b1">Submit</button>
+    </form>
+  </main>
+
+  {% endblock %}
+
+  

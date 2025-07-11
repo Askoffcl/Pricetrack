@@ -1,0 +1,47 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block title %}About Us - PriceTrack{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'about.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<section class="about-hero">
+  <h1>About PriceTrack</h1>
+  <p>Revolutionizing the way you shop for electronics — faster, smarter, and locally focused.</p>
+</section>
+
+<section class="about-content">
+  <div class="container">
+    <h2>Our Mission</h2>
+    <p>
+      <strong>PriceTrack</strong> is a web platform designed to help users compare prices for electronic devices across local offline stores.
+      Whether you're a tech enthusiast or a smart shopper, we give you the power to discover the best deals without hopping store to store.
+    </p>
+
+    <h2>Why PriceTrack?</h2>
+    <ul>
+      <li>💡 Real-time price comparison from multiple local shops</li>
+      <li>📍 Location-based shop discovery for convenience</li>
+      <li>🛒 Seamless order placement and feedback system</li>
+      <li>🧾 Complaint management to ensure customer satisfaction</li>
+      <li>🚀 Admin tools to manage shops and ensure quality</li>
+    </ul>
+
+    <h2>How It Works</h2>
+    <p>
+      We aggregate pricing data from various registered retailers. Our system highlights the best deals,
+      allows you to place orders, leave reviews, and even file complaints — all from one platform.
+    </p>
+
+    <h2>Future Vision</h2>
+    <p>
+      PriceTrack is evolving. We're working toward mobile app development, personalized recommendations,
+      eco-friendly product tags, multilingual support, and even augmented reality (AR) product previews.
+    </p>
+  </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,77 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block title %}
+Shop Registration
+{% endblock %}
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'shopRegistration.css' %}">
+{% endblock %}
+     
+   {% block content %}
+
+<section class="txt">
+  <h1>Compare Prices Instantly</h1>
+  <p>
+    Find the best deals from local stores near you — smarter, faster, better.
+  </p>
+</section>
+
+    <main>
+      
+      <form
+        method="post"
+        enctype="multipart/form-data"
+        onsubmit="return validatePassword()"
+      >
+        {% csrf_token %}
+        <div class="left">
+          <label for="owner">Owner Name</label>
+          {{ form.name }}
+
+          <label for="email">Email</label>
+          {{ form.email }}
+
+          <label for="image">Image</label>
+          {{ form.image }}
+
+          <label for="district">District</label>
+          {{ form.district }}
+
+          <label for="password">Password</label>
+          {{ form.password }}
+        </div>
+
+        <div class="right">
+          <label for="shopname">Shop Name</label>
+          {{ form.shopname }}
+
+          <label for="phone">Phone</label>
+          {{ form.phone }}
+
+          <label for="place">Place</label>
+          {{ form.place }}
+
+          <label for="license">License Number</label>
+          {{ form.licensenumber }}
+
+          <label for="confirm">Confirm Password</label>
+          {{ form.confirm_password }}
+            <button type="submit">Register</button>
+        </div>
+
+      
+      </form>
+
+      <script>
+        function validatePassword() {
+          const pass = document.getElementById("pass").value;
+          const confirm = document.getElementById("confirm").value;
+          if (pass !== confirm) {
+            alert("password do not match");
+            return false;
+          }
+          return true;
+        }
+      </script>
+    </main>
+ {% endblock %}

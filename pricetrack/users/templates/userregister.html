@@ -1,0 +1,38 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block title %}
+User Registration
+{% endblock %}
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'userRegistration.css' %}">
+{% endblock %}
+
+
+  {% block content %}
+<section class="txt">
+  <h1>Compare Prices Instantly</h1>
+  <p>
+    Find the best deals from local stores near you — smarter, faster, better.
+  </p>
+</section>
+    <main>
+      <h2>User Registration</h2>
+      <form method="post" enctype="multipart/form-data" onsubmit="return validatePassword()">
+        {% csrf_token %}
+        {{ form.as_p }}
+        {% if form.errors %}
+  <ul>
+    {% for field in form %}
+      {% for error in field.errors %}
+        <li style="color:red">{{ field.label }}: {{ error }}</li>
+      {% endfor %}
+    {% endfor %}
+  </ul>
+{% endif %}
+
+        <button type="submit">Register</button>
+      </form>
+
+    </main>
+  
+    {% endblock %}

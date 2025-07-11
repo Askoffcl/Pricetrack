@@ -1,0 +1,37 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block title %}
+FeedBack
+{% endblock %}
+ {% block extra_head %}
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="{% static 'products\viewFeedback.css' %}">
+ {% endblock %}
+
+
+{% block content %}
+{% include 'side.html' %}
+<div class="main">
+  <header>
+    <h1>Available</h1>
+  </header>
+
+  <main >
+    <table>
+      <tr>
+        <th>comment</th>
+        <th>Username</th>
+        <th>Rating</th>
+      </tr>
+      {% for fed in feds %}
+      <tr>
+        <td>{{ fed.comment }}</td>
+        <td>{{ fed.userid }}</td>
+        <td>{{ fed.rating }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+
+  </main>
+  </div>
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends 'layout.html' %} {% load static %} {% block title %} Login
+ {% endblock %} {% block extra_head %}
+<link rel="stylesheet" href="{% static 'login.css' %}" />
+<script>
+  function showAlert() {
+    alert("{% for message in messages %}{{ message|escapejs }}{% if not forloop.last %}\n{% endif %}{% endfor %}");
+  }
+</script>
+
+{% endblock %} {% block content %}
+<section class="txt">
+  <h1>Compare Prices Instantly</h1>
+  <p>
+    Find the best deals from local stores near you — smarter, faster, better.
+  </p>
+</section>
+<main>
+  <form method="post">
+    {% csrf_token %}
+    <label for="username">Username</label>
+    <input type="text" name="username" id="username" />
+
+    <label for="password">Password</label>
+    <input type="password" name="password" id="password" />
+
+    <div class="link-group">
+      <a href="/forgotPassword">Forgot Password?</a>
+    </div>
+
+    <button type="submit" onclick="showAlert()">Login</button>
+
+    <div class="bottom-link">
+      <a href="/userregistration">Don't have an Account?</a>
+    </div>
+  </form>
+</main>
+{% endblock %}

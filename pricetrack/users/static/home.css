@@ -1,0 +1,127 @@
+/* Fixed Header (About Banner) */
+.txt {
+  background-color: #007bff;
+  padding: 60px 20px 30px 20px;
+  text-align: center;
+  color: white;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Heading text */
+.txt h1 {
+  font-size: 40px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.txt p {
+  font-size: 17px;
+  max-width: 700px;
+  margin: 0 auto 20px;
+  line-height: 1.6;
+}
+
+/* Main content section */
+.info-section {
+  background-color: white;
+  padding: 40px 25px;
+  max-width: 1000px;
+  margin: 240px auto 100px auto; /* Top margin prevents overlap with fixed .txt */
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+  position: relative;
+}
+
+/* Section heading */
+.info-section h2 {
+  text-align: center;
+  font-size: 28px;
+  color: #007bff;
+  margin-bottom: 20px;
+}
+
+/* Paragraph text */
+.info-section p {
+  font-size: 16px;
+  color: #333;
+  margin-bottom: 18px;
+  text-align: justify;
+  line-height: 1.7;
+}
+
+/* List styling */
+.info-section ul {
+  margin-left: 20px;
+  margin-bottom: 20px;
+  padding-left: 10px;
+}
+
+.info-section ul li {
+  font-size: 16px;
+  color: #444;
+  line-height: 1.6;
+  margin-bottom: 8px;
+  list-style: none;
+  position: relative;
+  padding-left: 28px;
+}
+
+.info-section ul li::before {
+  content: "✔";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #28a745;
+  font-weight: bold;
+}
+
+/* Button or link wrap */
+.info-section .btn-wrap {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.info-section .btn-wrap a {
+  background-color: #007bff;
+  color: white;
+  text-decoration: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.info-section .btn-wrap a:hover {
+  background-color: #0056b3;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .txt h1 {
+    font-size: 28px;
+  }
+
+  .txt p {
+    font-size: 15px;
+    padding: 0 10px;
+  }
+
+  .info-section {
+    padding: 20px;
+    margin: 200px 10px 60px 10px;
+  }
+
+  .info-section h2 {
+    font-size: 22px;
+  }
+
+  .info-section p,
+  .info-section ul li {
+    font-size: 14px;
+  }
+}

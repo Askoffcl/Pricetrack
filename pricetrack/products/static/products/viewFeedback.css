@@ -1,0 +1,51 @@
+
+
+
+  .main{
+
+    margin-left: 555px;
+    margin-top: 30px;
+   
+  }
+
+    header h1 {
+      font-size: 2rem;
+      color: #0f172a;
+   text-align: center;
+    
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 90%;
+      max-width: 800px;
+      background-color: #ffffff;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      border-radius: 6px;
+      overflow: hidden;
+      margin-top: 50px;
+    }
+
+    th, td {
+      padding: 20px 50px;
+      text-align: left;
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    th {
+      background-color: #2563eb;
+      color: white;
+      font-weight: 600;
+      text-align: center;
+    }
+
+    td {
+      color: #334155;
+      text-align: center;
+    }
+
+    tr:hover {
+      background-color: #f1f5f9;
+    }
+

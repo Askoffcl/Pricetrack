@@ -1,0 +1,72 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block title %}
+View Products
+{% endblock %}
+   {% block extra_head %}
+   <link rel="stylesheet" href="{% static 'products/viewProduct.css' %}">
+  {% endblock %}
+
+
+   
+  {% block content %}
+  
+        {% include 'side.html ' %}
+
+     
+
+      <div class="products-grid">
+         {% if recommended %}
+      <div class="recommended">
+        <h2>Recommended Product (Lowest Price)</h2>
+        <p><strong>Name:</strong> {{ recommended.productname }}</p>
+        <p><strong>Brand:</strong> {{ recommended.brand }}</p>
+        <p><strong>Price:</strong> ₹{{ recommended.price }}</p>
+        {% if recommended.image %}
+        <img
+          src="{{ recommended.image.url }}"
+          alt="{{ recommended.productname }}"
+          style="width: 150px; margin-top: 10px"
+        />
+        {% endif %}
+      </div>
+      {% endif %}
+        {% for pro in products %}
+        <div class="card">
+          {% if pro.image %}
+          <img src="{{ pro.image.url }}" alt="{{ pro.productname }}" />
+          {% else %}
+          <img
+            src="https://via.placeholder.com/300x180?text=No+Image"
+            alt="No Image"
+          />
+          {% endif %}
+          <p><strong>ShopName:</strong>{{ pro.shopid.shopname}}</p>
+          <p><strong>Name:</strong> {{ pro.productname }}</p>
+          <p><strong>Category:</strong> {{ pro.productcate }}</p>
+          <p><strong>Brand:</strong> {{ pro.brand }}</p>
+          <p><strong>Model:</strong> {{ pro.model }}</p>
+          <p><strong>Price:</strong> ₹{{ pro.price }}</p>
+          <p><strong>Features:</strong> {{ pro.description }}</p>
+
+          {% if not request.user.is_superuser %}
+          <div class="actions">
+            <form method="POST" action="{% url 'order' pro.id %}">
+              {% csrf_token %}
+              <input type="number" placeholder="quantity" name="quantity" />
+            
+            <button type="submit">Buy</button>
+            </form>
+          </div>
+          
+          {% endif %}
+        </div>
+        {% endfor %}
+      </div>
+      
+     
+
+
+     
+   
+{% endblock %}

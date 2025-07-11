@@ -1,0 +1,38 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block title %}
+Home
+{% endblock %}
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'home.css' %}">
+{% endblock %}
+{% block content %}
+
+  
+    <section class="txt">
+      <h1>Compare Prices Instantly</h1>
+      <p>Find the best deals from local stores near you — smarter, faster, better.</p>
+    </section>
+
+    
+    <section class="info-section">
+      <h2>Welcome to PriceTrack</h2>
+      <p>
+        Discover the smartest way to shop for electronics. <strong>PriceTrack</strong> is a price comparison platform that connects buyers with local stores to help them get the best deals available nearby.
+      </p>
+      <p>
+        Whether you're a customer searching for the lowest price or a shop owner wanting to reach more buyers, PriceTrack offers tools to make your job easier. You can explore products, compare local prices, place orders, and give feedback — all from one place.
+      </p>
+      <ul>
+        <li>💡 Real-time price comparison</li>
+        <li>🛒 Easy order placement</li>
+        <li>🧾 Feedback & complaint support</li>
+        <li>📍 Location-based shop discovery</li>
+        <li>🛍️ Boost visibility for local sellers</li>
+      </ul>
+      <p>
+        Empower your shopping decisions with PriceTrack — where better deals meet smarter choices.
+      </p>
+     
+    </section>
+  {% endblock %}

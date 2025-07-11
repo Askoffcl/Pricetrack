@@ -1,0 +1,35 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Profile | Price Track</title>
+     <link rel="stylesheet" href="static/homepage.css">
+   
+
+  </head>
+
+ 
+    <main>
+      {% include "side.html"%}
+        <div class="profile">
+          <div class="profile-card">
+            {% if request.user.image and request.user.image.name %}
+            <img src="{{ request.user.image.url }}" alt="User Image" />
+            {% else %}
+            <img src="{% static 'default.jpg' %}" alt="Default Image" />
+            {% endif %}
+            <p><strong>Name:</strong> {{ user.username }}</p>
+            <p><strong>Email:</strong> {{ user.email }}</p>
+            <p><strong>Phone Number:</strong> {{ user.phone }}</p>
+            <p><strong>District:</strong> {{ user.district }}</p>
+            <p><strong>Place:</strong> {{ user.place }}</p>
+            <a href="/resetPassword"><button type="button" class="b1">Reset Password</button></a>
+          </div>
+        </div>
+      </div>
+    </main>
+   {% endblock %}

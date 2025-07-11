@@ -1,0 +1,45 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block title %}
+Shopowners
+{% endblock %}
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'products\viewShopowner.css' %}">
+{% endblock %}
+
+{% block content %}
+{% include 'side.html' %}
+<div class="main">
+
+<table>
+  <tr>
+    <th>Id</th>
+    <th>Username</th>
+    <th>Email</th>
+    <th>Phone</th>
+    <th>Last Login</th>
+    <th>Status</th>
+  </tr>
+
+  {% for user in users %}
+  <tr>
+    
+    <td>{{ user.id }}</td>
+    <td>{{ user.username }}</td>
+    <td>{{ user.email }}</td>
+    <td>{{ user.phone }}</td>
+    <td>{{ user.last_login }}</td>
+
+    <td>
+      {% if not user.is_active %}
+        <a class="button-link" href="{% url 'active' user.id %}">Activate</a>
+      {% else %}
+        <a class="button-link" href="{% url 'deactive' user.id %}">Deactivate</a>
+      {% endif %}
+    </td>
+
+  </tr>
+  {% endfor %}
+</table>
+</div>
+{% endblock %}

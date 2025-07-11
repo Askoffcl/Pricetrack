@@ -1,0 +1,46 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block title %}
+My Orders
+{% endblock %}
+{% block extra_head %}
+  
+  <link rel="stylesheet" href="{% static 'products/orderPlaced.css' %}">
+{% endblock %}
+
+  {% block content %}
+  <div class="fullop">
+   {% include "side.html"%}
+
+  <div class="container">
+    <h2>My Orders</h2>
+
+    <table>
+      <tr>
+        <th>Product</th>
+        <th>Brand</th>
+        <th>Quantity</th>
+        <th>Date</th>
+      </tr>
+      {% for order in orders %}
+      <tr>
+        <td>{{ order.productid.productname }}</td>
+        <td>{{ order.productid.brand }}</td>
+        <td>{{ order.quantity }}</td>
+        <td>{{ order.orderdate }}</td>
+        
+      </tr>
+      {% empty %}
+      <tr>
+        <td colspan="4">No orders found.</td>
+      </tr>
+      {% endfor %}
+    </table>
+
+  
+  </div>
+  </div>
+  {% endblock %}
+
+

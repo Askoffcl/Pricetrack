@@ -1,0 +1,88 @@
+ main {
+        padding: 40px 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      
+
+      form {
+        margin-top: 180px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        background-color: white;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        max-width: 900px;
+        width: 100%;
+        gap: 20px;
+      }
+
+      .left,
+      .right {
+        flex: 1;
+        min-width: 300px;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      /* Simple and clean styling only for input boxes */
+      input[type="text"],
+      input[type="email"],
+      input[type="password"],
+      input[type="file"],
+      input[type="number"],
+      input[list],
+      select {
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        font-size: 15px;
+        width: 100%;
+      }
+
+      label {
+        font-weight: 500;
+        margin-bottom: 5px;
+      }
+
+      button {
+        margin-top: 20px;
+        padding: 12px;
+        background-color: #007bff;
+        color: white;
+        font-size: 16px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background-color: #0056b3;
+      }
+      .txt {
+  background-color:  #007bff;
+  padding: 60px 500px 0px 500px;
+  text-align: center;
+  color: white;
+  margin-top: 2px;
+  position: fixed  ;
+
+}
+
+.txt h1 {
+  font-size: 40px;
+  font-weight: 400;
+  margin-bottom: 10px;
+}
+
+.txt p {
+  font-size: 17px;
+  max-width: 600px;
+  margin: 0 auto 20px;
+  line-height: 1.6;
+}

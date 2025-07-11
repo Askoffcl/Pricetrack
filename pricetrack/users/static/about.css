@@ -1,0 +1,116 @@
+/* Fixed About Hero Section */
+.about-hero {
+  background-color: #007bff;
+  color: white;
+  text-align: center;
+  padding: 60px 20px 40px 20px;
+  position: fixed;
+  top: 50px;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Hero Heading */
+.about-hero h1 {
+  font-size: 36px;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+
+/* Hero Subheading */
+.about-hero p {
+  font-size: 18px;
+  max-width: 720px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* Scrollable content below fixed banner */
+.about-content {
+  background-color: #ffffff;
+  padding: 50px 20px;
+  margin-top: 220px; /* Make room for fixed header */
+}
+
+/* Inner container for content */
+.about-content .container {
+  max-width: 1000px;
+  margin: 0 auto;
+  line-height: 1.8;
+  color: #333;
+}
+
+/* Section titles */
+.about-content h2 {
+  color: #007bff;
+  font-size: 26px;
+  margin-top: 40px;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+/* Paragraphs */
+.about-content p {
+  font-size: 16px;
+  margin-bottom: 20px;
+  text-align: justify;
+  line-height: 1.7;
+}
+
+/* List styling */
+.about-content ul {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 20px;
+}
+
+.about-content ul li {
+  position: relative;
+  padding-left: 32px;
+  margin-bottom: 12px;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #444;
+}
+
+/* List icons */
+.about-content ul li::before {
+  content: "✔";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #28a745;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+/* Responsive tweaks */
+@media (max-width: 768px) {
+  .about-hero {
+    padding: 40px 15px 30px 15px;
+  }
+
+  .about-hero h1 {
+    font-size: 28px;
+  }
+
+  .about-hero p {
+    font-size: 15px;
+  }
+
+  .about-content {
+    margin-top: 200px;
+    padding: 30px 15px;
+  }
+
+  .about-content h2 {
+    font-size: 22px;
+  }
+
+  .about-content p,
+  .about-content ul li {
+    font-size: 14px;
+  }
+}

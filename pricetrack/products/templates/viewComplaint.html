@@ -1,0 +1,41 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block title %}
+Complaints
+{% endblock %}
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'products\viewComplaint.css' %}">
+{% endblock %}
+    {% block content %}
+    
+    {% include 'side.html' %}
+
+ 
+    <table>
+      <tr>
+        <th>Message</th>
+        <th>User</th>
+        <th>Status</th>
+        <th>Update</th>
+      </tr>
+      {% for fed in complaint %}
+      <tr>
+        <td>{{ fed.description }}</td>
+        <td>{{ fed.userid.username }}</td>
+        <td>{{ fed.status }}</td>
+        <td>
+          <form method="post" action="{% url 'updateStatus' fed.id %}">
+            {% csrf_token %}
+            <select name="status">
+              <option value="pending" {% if fed.status == "pending" %}selected{% endif %}>Pending</option>
+              <option value="working on" {% if fed.status == "working on" %}selected{% endif %}>Working on</option>
+              <option value="resolved" {% if fed.status == "resolved" %}selected{% endif %}>Resolved</option>
+            </select>
+            <button type="submit">Submit</button>
+          </form>
+        </td>
+      </tr>
+      {% endfor %}
+    </table>
+   
+{% endblock %}

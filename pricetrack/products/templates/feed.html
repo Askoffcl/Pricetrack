@@ -1,0 +1,18 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block title %}
+    FeedBack
+    {% endblock %}
+  {% block extra_head %}
+  <link rel="stylesheet" href="{% static 'products\feed.css' %}">
+  {% endblock %}
+{% block content %}
+    <main>
+      <form method="post">
+        {% csrf_token %}
+        <h2>Give Your Feedback</h2>
+        {{form.as_p}}
+        <button type="submit">Submit</button>
+      </form>
+    </main>
+{% endblock %}
