@@ -11,7 +11,7 @@ from django.conf import settings
 def home(request):
     return render(request, 'home.html')
 
-def userregistraion(request):
+def userRegistraion(request):
     if request.method == "POST":
         form = userRegister(request.POST,request.FILES)
         if form.is_valid():
@@ -35,9 +35,9 @@ def userregistraion(request):
             print(form.errors)
             messages.error(request,'invalid form data')
     form = userRegister()
-    return render(request, 'userregister.html',{'form':form})
+    return render(request, 'userRegistration.html',{'form':form})
 
-def shopregistraion(request):
+def shopRegistraion(request):
     if request.method == "POST":
         form = shopRegister(request.POST,request.FILES)
         if form.is_valid():
@@ -62,7 +62,7 @@ def shopregistraion(request):
             print(form.errors)
             messages.error(request,'invalid form data')
     form = shopRegister()
-    return render(request, 'shopregister.html',{'form':form})
+    return render(request, 'shopRegistration.html',{'form':form})
 
 def loginall(request):
     if request.method == "POST":

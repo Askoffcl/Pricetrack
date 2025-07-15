@@ -4,7 +4,7 @@ from .models import Product,Order,Complaint,Register,Feedback
 from .forms import AddProduct,FeedbackForm,ComplaintForm
 
 
-def addproducts(request):
+def addProducts(request):
     if request.method == "POST":
         form = AddProduct(request.POST,request.FILES)
         if form.is_valid():
@@ -16,10 +16,10 @@ def addproducts(request):
             print(form.error)
             messages.error(request,'invalid form data')
     form = AddProduct()
-    return render(request,'addproducts.html',{'form' : form})
+    return render(request,'addProducts.html',{'form' : form})
 
 
-def viewproducts(request):
+def viewProducts(request):
     pro = Product.objects.all()
     return render(request,'viewproducts.html',{'products':pro, 'search': 1})
 
@@ -37,7 +37,7 @@ def order_placed(request):
     return render (request,'orderplaced.html',{'orders':orders})
 
 
-def feed(request,id):
+def feedback(request,id):
     product=Product.objects.get(id = id)
     if request.method == 'POST':
         form = FeedbackForm(request.POST, request.FILES)
@@ -54,7 +54,7 @@ def feed(request,id):
     else:
         form = FeedbackForm()
 
-    return render(request, 'feed.html', {'form': form})
+    return render(request, 'feedBack.html', {'form': form})
 
 
 def complaint(request,id):
@@ -75,7 +75,7 @@ def complaint(request,id):
 
     return render(request,'complaint.html',{'form':form})
 
-def productsearch(request):
+def productSearch(request):
     query = request.GET.get('search', ' ').strip()
     print(query)
     print(Product.objects.filter(productname__icontains=query))
