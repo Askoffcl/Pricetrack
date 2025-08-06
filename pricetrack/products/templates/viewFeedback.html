@@ -10,28 +10,50 @@ FeedBack
 
 
 {% block content %}
-{% include 'side.html' %}
-<div class="main">
-  <header>
-    <h1>Available</h1>
-  </header>
 
-  <main >
+{% include 'side.html' %}
+  <header>
+    <h1 style="margin-left: 690px;margin-top: 30px;">Feedback Available</h1>
+  </header>
+<div class="container">
+
+
+
     <table>
       <tr>
+        <th>No</th> 
         <th>comment</th>
+          <th>Product</th>
         <th>Username</th>
         <th>Rating</th>
+        <th>Date</th>
       </tr>
+
+      {% if  request.user.role == "retailer" %}
       {% for fed in feds %}
       <tr>
+         <td>{{ forloop.counter }}</td>
         <td>{{ fed.comment }}</td>
+            <td>{{ fed.productid.productname }}</td>
         <td>{{ fed.userid }}</td>
         <td>{{ fed.rating }}</td>
+        <td>{{ fed.orderdate }}</td>
       </tr>
       {% endfor %}
+
+      {% else %}
+<tr>
+         <td>1</td>
+        <td>{{ fed.comment }}</td>
+            <td>{{ fed.productid.productname }}</td>
+        <td>{{ fed.userid }}</td>
+        <td>{{ fed.rating }}</td>
+        <td>{{ fed.orderdate }}</td>
+      </tr>
+
+      {% endif %}
     </table>
 
-  </main>
+ 
   </div>
 {% endblock %}

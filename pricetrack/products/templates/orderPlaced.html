@@ -14,22 +14,62 @@ My Orders
    {% include "side.html"%}
 
   <div class="container">
-    <h2>My Orders</h2>
+    <h2>Orders</h2>
 
     <table>
       <tr>
+        <th>No</th>
+        <th>User</th>
         <th>Product</th>
+        <th>ShopName</th>
         <th>Brand</th>
         <th>Quantity</th>
         <th>Date</th>
+        <th>Payment Method </th>
+        {% if request.user.role == 'User' %}
+        <th>Feedback</th>
+        {% endif %}
       </tr>
       {% for order in orders %}
       <tr>
-        <td>{{ order.productid.productname }}</td>
-        <td>{{ order.productid.brand }}</td>
+         <td>{{ forloop.counter }}</td>
+        <td>{{ order.userid.username }}</td>
+          <td><a href="{% url 'detail' order.productid.id %}" style="text-decoration: none;color: blue;">{{ order.productid.productname }}</a></p></td>
+         <td>{{ order.productid.shopid.shopname }}</td>
+        <td>{{ order.productid.productid.brand }}</td>
         <td>{{ order.quantity }}</td>
         <td>{{ order.orderdate }}</td>
-        
+<td>
+  {% if order.payment_method == 'upi'  or order.payment_method == 'UPI' %}
+    UPI
+  {% elif order.payment_method == 'Cash on Delivery' or order.payment_method == 'cod' %}
+    Cash On Delivery
+  {% elif order.payment_method == 'card' or order.payment_method == 'CARD PAYMENT'  %}
+    Card
+  {% else %}
+    Not Pai;fml;sdss
+  {% endif %}
+</td>
+
+
+
+{% if request.user.role == 'User' %}
+        <td> 
+          
+
+        <div class="d1" style="display: flex; gap: 10px; flex-wrap: wrap;">
+          {% if order.fed == 2 %}
+          <button type="button">
+                <a href="/product/viewFeed/{{ order.id }}">View Feedback</a>
+          </button>
+          {% else %}
+               <button type="button">
+            <a href="{% url 'feed' order.id %}">Feedback</a>
+          </button>
+          {% endif %}
+          {% endif %}
+          </td>
+        </div>
       </tr>
       {% empty %}
       <tr>

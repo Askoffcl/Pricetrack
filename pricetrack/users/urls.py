@@ -9,5 +9,8 @@ urlpatterns=[
     path('homepage',views.homepage,name="homepage"),
     path('about',views.about),
     path('forgotPassword',views.forgotPassword),
-    path('resetPassword',views.resetPassword,name='resetPassword')
+    path('resetPassword',views.resetPassword,name='resetPassword'),
+    path('editProfile',views.editProfile),
+    path('changeUsername',views.changeUsername),
+    path('changeImage',views.changeProfile)
 ]

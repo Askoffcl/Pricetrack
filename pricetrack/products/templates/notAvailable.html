@@ -1,0 +1,67 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block title %}
+View Request
+{% endblock %}
+   {% block extra_head %}
+   <link rel="stylesheet" href="{% static 'products/notAvailable.css' %}">
+  {% endblock %}
+
+
+   
+  {% block content %}
+       
+     
+    
+
+  
+        {% include 'side.html ' %}
+
+      <div class="products-grid">
+   
+        {% for pro in reqs %}
+        <div class="card">
+          {% if pro.image %}
+          <img src="{{ pro.image.url }}" alt="{{ pro.productname }}" />
+          {% else %}
+          <img
+            src="https://via.placeholder.com/300x180?text=No+Image"
+            alt="No Image"
+          />
+          {% endif %}
+          <p><strong>Shop Name:</strong> {{ pro.shopid }}</p>
+          <p><strong>Name:</strong> {{ pro.productname }}</p>
+          <p><strong>Category:</strong> {{ pro.productcate }}</p>
+          <p><strong>Brand:</strong> {{ pro.brand }}</p>
+          <p><strong>MRP:</strong> ₹{{ pro.price }}</p>
+          <p><strong>Features:</strong> {{ pro.description }}</p>
+
+          {% if  request.user.is_superuser %}
+          <div class="actions">
+            <form method="POST" action="{% url 'notAvailablereq' pro.id %}">
+              {% csrf_token %}
+             
+            
+            <button type="submit" class="ab">Add</button>
+            </form>
+           <form method="POST" action="{% url 'rejected' pro.id %}">
+    {% csrf_token %}
+    <button class="re" type="submit">Reject</button>
+</form>
+
+          </div>
+          
+          {% endif %}
+        </div>
+        {% endfor %}
+       {% if not reqs %}
+  <h2>No request found.</h2>
+{% endif %}
+        
+      </div>
+      
+
+
+     
+   
+{% endblock %}

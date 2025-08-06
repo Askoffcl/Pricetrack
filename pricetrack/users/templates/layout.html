@@ -6,10 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="{% static 'layout.css' %}" />
     <title>{% block title%}PriceTrack - Home{% endblock %}</title>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     {% block extra_head %} {% endblock %}
   </head>
 
   <body>
+
+
+
     <header class="navbar">
       <p class="leftnav"><a href="/">Price Track</a></p>
       <div class="rightnav">
@@ -17,7 +22,7 @@
         
         {% if request.user.role == 'admin' %}
         <a href="/homepage">Home</a>
-        <a href="#">About</a>
+        <a href="/about">About</a>
         <a href="/logout">Logout</a>
         {% elif request.user.role == 'User' %}
         <a href="/homepage">Home</a>
@@ -25,22 +30,40 @@
         <a href="/logout">Logout</a>
         {% elif request.user.role == 'retailer' %}
         <a href="/homepage">Home</a>
-        <a href="#">About</a>
+        <a href="/about">About</a>
         <a href="/logout">Logout</a>
+        
         {% else %}
         <a href="/about">About</a>
         <a href="/userregistration">Register</a>
         <a href="/shopregister">Register as Organizer</a>
         <a href="/login">Login</a>
-        {% endif %} {% if search == 1 %}
+        {% endif %} 
+        
+        {% if search == 1 %}
         <form method="get" class="search" action="{% url 'productsearch' %}">
           <input type="text" name="search" placeholder="Search products..." />
           <button type="submit">Search</button>
         </form>
         {% endif %}
+        {% if search == 2 %}
+        <form method="get" class="search" action="{% url 'shopSearch' %}">
+          <input type="text" name="search" placeholder="Search products..." />
+          <button type="submit">Search</button>
+        </form>
+        {% endif %}
+      
       </div>
     </header>
-    
+  
+    {% if messages %}
+    <div id="toast-container">
+        {% for message in messages %}
+            <div class="toast alert alert-{{ message.tags }} text-{{message.tags}}">{{ message }}</div>
+        {% endfor %}
+    </div>
+{% endif %}
+     
     {% block content %} {% endblock %}
     
         
@@ -59,5 +82,17 @@
    
   </body>
  
-
+<script>
+    // Automatically fade out toast messages after 3 seconds
+    document.addEventListener('DOMContentLoaded', function () {
+        const toasts = document.querySelectorAll('.toast');
+        toasts.forEach(toast => {
+            setTimeout(() => {
+                toast.style.transition = 'opacity 0.5s ease';
+                toast.style.opacity = '0';
+                setTimeout(() => toast.remove(), 1000); // Remove the element after fade-out
+            }, 3000);
+        });
+});
+</script>
 </html>

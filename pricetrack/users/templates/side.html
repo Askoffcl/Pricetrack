@@ -1,28 +1,40 @@
 {% load static %}
 
+<link rel="stylesheet" href="{% static 'side.css' %}" />
 
-     <link rel="stylesheet" href="{% static 'side.css' %}">
-    
+<div class="full">
+  <div class="side">
+    <a href="/product/orderplaced"><button>Order Placed</button></a>
 
-    <div class="full">
-        <div class="side">
-          {% if request.user.role == 'User' %}
-          <a href="/product/orderplaced"><button>Order Placed</button></a>
-          {% endif %} {% if request.user.role == 'retailer' %}
-          <a href="/product/addproducts"><button>Add Products</button></a>
-          {% endif %}
-          <a href="/product/viewproducts"><button>View Products</button></a>
 
-          {% if request.user.role == 'retailer' %}
-          <a href="/product/viewFeedback"><button>View Feedback</button></a>
-          {% endif %} {% if request.user.is_superuser %}
-          <a href="/product/viewComplaint"><button>Complaints</button></a>
-          <a href="/product/viewShopowner"><button>View Shopowners</button></a>
-          <a href="/product/viewShopuser"><button>View ShopUsers</button></a>
-          {% endif %} {% if not request.user.is_superuser %}
-          <a href="{% url 'complaint' user.id %}"
-            ><button>Any complaints</button></a
-          >
-          <a href="/product/complaintStatus"><button >Complaint status</button></a>
-          {% endif %}
-        </div>
+      {% if request.user.role == 'User' %}
+                   <a href="/product/viewshopProduct"><button>Products</button></a>
+                    <a href="/product/viewCart"><button>View Cart</button></a>
+                   {% endif %}
+    {% if request.user.role == 'retailer' %}
+    <a href="/product/viewproducts"><button>Add Products</button></a>
+     <a href="/product/viewshopProduct"><button>My Products</button></a>
+    <a href="/product/viewFeedback"><button>View Feedback</button></a>
+    <a href="/product/viewallreq"><button>My Request</button></a>
+
+    {% endif %} 
+    {% if request.user.is_superuser %}
+      <a href="/product/viewshopProduct"><button>Products</button></a>
+    <a href="/product/category"><button>Category</button></a>
+    <a href="/product/viewproducts"><button>Admin Products</button></a>
+    <a href="/product/addproducts"><button>Add Products</button></a>
+    <a href="/product/viewComplaint"><button>Complaints</button></a>
+    <a href="/product/notavailable"><button>Request</button></a>
+    <a href="/product/viewShopowner"><button>View Shopowners</button></a>
+    <a href="/product/viewShopuser"><button>View ShopUsers</button></a>
+    <a href="/product/requestHistory"><button>Request History</button></a>
+
+    {% endif %} 
+    {% if not request.user.is_superuser %}
+
+ 
+    <a href="{% url 'complaint' user.id %}"><button>Any complaints</button></a>
+    <a href="/product/complaintStatus"><button>Complaint status</button></a>
+    {% endif %}
+  </div>
+</div>

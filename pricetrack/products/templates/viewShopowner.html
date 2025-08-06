@@ -14,6 +14,7 @@ Shopowners
 <table>
   <tr>
     <th>Id</th>
+    <th>Shop</th>
     <th>Username</th>
     <th>Email</th>
     <th>Phone</th>
@@ -24,7 +25,8 @@ Shopowners
   {% for user in users %}
   <tr>
     
-    <td>{{ user.id }}</td>
+    <td>{{ forloop.counter }}</td>
+    <td><a href="{% url 'allproduct' user.id %}" class="sname">{{user.shopname}}</a></td>
     <td>{{ user.username }}</td>
     <td>{{ user.email }}</td>
     <td>{{ user.phone }}</td>

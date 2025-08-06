@@ -33,7 +33,7 @@ def userRegistraion(request):
             return redirect('login')
         else:
             print(form.errors)
-            messages.error(request,'invalid form data')
+            messages.error(request,form.errors)
     form = userRegister()
     return render(request, 'userRegistration.html',{'form':form})
 
@@ -44,11 +44,11 @@ def shopRegistraion(request):
             ownername = form.cleaned_data['name']
             if Register.objects.filter(name = ownername).exists():
                 messages.error(request, 'ownername already exists')
-                return render(request, 'shopregister.html')
+                return render(request, 'shopRegistration.html')
             email = form.cleaned_data['email']
             if Register.objects.filter(email = email).exists():
                 messages.error(request, 'Email already exists')
-                return render(request, 'shopregister.html')
+                return render(request, 'shopRegistration.html')
             password = form.cleaned_data['password']
             password = make_password(password)
             user = form.save(commit=False)
@@ -60,7 +60,7 @@ def shopRegistraion(request):
             return redirect('login')
         else:
             print(form.errors)
-            messages.error(request,'invalid form data')
+            messages.error(request,form.errors)
     form = shopRegister()
     return render(request, 'shopRegistration.html',{'form':form})
 
@@ -121,8 +121,33 @@ def forgotPassword(request):
 def resetPassword(request):
     if request.method == 'POST':
         password = request.POST.get('confirm')
-        user = request.user
+        user = Register.objects.get(id = request.user.id)
         user.password  = make_password(password)
         user.save()
+        logout(request)
         return redirect('login')
     return render(request,'resetPassword.html')
+
+
+def editProfile(request):
+    return render(request,'editProfile.html')
+
+def changeUsername(request):
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        user = request.user
+        user.username  = name
+        user.save()
+        return redirect('/editProfile')
+    return render(request,'changeUsername.html')
+
+
+def changeProfile(request):
+    if request.method == 'POST':
+        name = request.FILES.get('img')
+        user = request.user
+        user.image  = name
+        user.save()
+        return redirect('/editProfile')
+    return render(request,'changeImage.html')
+

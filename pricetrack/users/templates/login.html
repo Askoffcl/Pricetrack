@@ -1,11 +1,7 @@
 {% extends 'layout.html' %} {% load static %} {% block title %} Login
  {% endblock %} {% block extra_head %}
 <link rel="stylesheet" href="{% static 'login.css' %}" />
-<script>
-  function showAlert() {
-    alert("{% for message in messages %}{{ message|escapejs }}{% if not forloop.last %}\n{% endif %}{% endfor %}");
-  }
-</script>
+
 
 {% endblock %} {% block content %}
 <section class="txt">
@@ -27,7 +23,7 @@
       <a href="/forgotPassword">Forgot Password?</a>
     </div>
 
-    <button type="submit" onclick="showAlert()">Login</button>
+    <button type="submit" >Login</button>
 
     <div class="bottom-link">
       <a href="/userregistration">Don't have an Account?</a>

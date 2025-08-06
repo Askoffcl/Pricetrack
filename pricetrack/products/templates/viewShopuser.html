@@ -1,10 +1,10 @@
 {% extends 'layout.html' %}
 {% load static %}
 {% block title %}
-Shopowners
+Shopuser
 {% endblock %}
 {% block extra_head %}
-<link rel="stylesheet" href="{% static 'products\viewShopowner.css' %}">
+<link rel="stylesheet" href="{% static 'products\viewShopUser.css' %}">
 {% endblock %}
 
 {% block content %}
@@ -24,8 +24,8 @@ Shopowners
   {% for user in users %}
   <tr>
     
-    <td>{{ user.id }}</td>
-    <td>{{ user.username }}</td>
+    <td>{{ forloop.counter }}</td>
+  <td><a href="{% url 'orderplaced' user.id %}" class="sname">{{user.username}}</a></td>
     <td>{{ user.email }}</td>
     <td>{{ user.phone }}</td>
     <td>{{ user.last_login }}</td>

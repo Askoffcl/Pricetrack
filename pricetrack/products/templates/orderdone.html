@@ -1,0 +1,21 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block title %}Order Successful{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'products/orderdone.css' %}">
+{% endblock %}
+{% block content %}
+<div class="order-success-container">
+  <div class="order-card">
+    
+    <h2>Order Placed Successfully!</h2>
+    <p>Thank you for your purchase. Your order has been placed and is being processed.</p>
+    <div>
+      <a href="{% url 'viewshopitems' %}" class="btn-shop">🛍️ Continue Shopping</a>
+      <a href="{% url 'orderplaced' %}" class="btn-orders">📦 View Your Orders</a>
+    </div>
+  </div>
+</div>
+{% endblock %}

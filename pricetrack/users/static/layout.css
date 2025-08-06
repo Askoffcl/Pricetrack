@@ -22,7 +22,7 @@ body {
   left: 0;
   right: 0;
   z-index: 1000;
-  
+
 }
 
 /* Left part of navbar */
@@ -120,7 +120,7 @@ body {
   text-align: center;
   padding: 15px 0;
   font-size: 14px;
-  margin-top: 50px;
+
   position: relative;
   width: 100%;
 }
@@ -128,3 +128,20 @@ body {
 .footer p {
   margin: 0;
 }
+  #toast-container {
+        position: fixed;
+        top: 100px;
+        right: 10px;
+        z-index: 1000;
+		height: 100px;
+		width: 400px;
+    }
+
+    .toast {
+        margin-bottom: 10px;
+		color: black;
+        padding: 10px 15px;
+        border-radius: 5px;
+        background-color: white;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    }

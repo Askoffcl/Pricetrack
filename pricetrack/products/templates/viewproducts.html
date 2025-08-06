@@ -10,27 +10,19 @@ View Products
 
    
   {% block content %}
+       
+     
+    
   
         {% include 'side.html ' %}
-
-     
+        {% if request.user.role == 'retailer' %}
+          <div class="nota" > 
+    <a href="/product/request" > <button>Not Available ?</button></a>
+    </div>
+    {% endif %}
 
       <div class="products-grid">
-         {% if recommended %}
-      <div class="recommended">
-        <h2>Recommended Product (Lowest Price)</h2>
-        <p><strong>Name:</strong> {{ recommended.productname }}</p>
-        <p><strong>Brand:</strong> {{ recommended.brand }}</p>
-        <p><strong>Price:</strong> ₹{{ recommended.price }}</p>
-        {% if recommended.image %}
-        <img
-          src="{{ recommended.image.url }}"
-          alt="{{ recommended.productname }}"
-          style="width: 150px; margin-top: 10px"
-        />
-        {% endif %}
-      </div>
-      {% endif %}
+  
         {% for pro in products %}
         <div class="card">
           {% if pro.image %}
@@ -41,30 +33,30 @@ View Products
             alt="No Image"
           />
           {% endif %}
-          <p><strong>ShopName:</strong>{{ pro.shopid.shopname}}</p>
-          <p><strong>Name:</strong> {{ pro.productname }}</p>
-          <p><strong>Category:</strong> {{ pro.productcate }}</p>
+       <p><strong>Name:</strong>   <a href="{% url 'productdetail' pro.id %}">{{ pro.productname }}</a> </p>
+     ₹{{ pro.price }}
+        <p><strong>Store:</strong> {{ pro.shopid.shopname }}</p>
           <p><strong>Brand:</strong> {{ pro.brand }}</p>
-          <p><strong>Model:</strong> {{ pro.model }}</p>
-          <p><strong>Price:</strong> ₹{{ pro.price }}</p>
-          <p><strong>Features:</strong> {{ pro.description }}</p>
 
           {% if not request.user.is_superuser %}
           <div class="actions">
-            <form method="POST" action="{% url 'order' pro.id %}">
+            <form method="POST" action="{% url 'addShopProduct' pro.id %}">
               {% csrf_token %}
-              <input type="number" placeholder="quantity" name="quantity" />
+             
             
-            <button type="submit">Buy</button>
+            <button type="submit" class="but1">Add</button>
             </form>
           </div>
           
           {% endif %}
         </div>
         {% endfor %}
+        {%  if not products %}
+        <h1 style="margin-left: 450px;">No Product</h1>
+        {% endif %}
+        
       </div>
       
-     
 
 
      

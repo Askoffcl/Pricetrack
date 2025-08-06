@@ -1,6 +1,6 @@
 {% extends 'layout.html' %}
 {% load static %}
-{% block title %}My Orders{% endblock %}
+{% block title %}My Complaints{% endblock %}
 {% block extra_head %}
 <link rel="stylesheet" href="{% static 'products\complaintStatus.css' %}">
 {% endblock %} 
@@ -12,16 +12,27 @@
 
     <table>
       <tr>
+        <th>No</th>
         <th>Submitted By</th>
-        <th>Reason</th>
+        <th>Problem</th>
+             <th>Date</th>
         <th>Status</th>
+    
+         <th>Reason</th>
+         
+
 
       </tr>
       {% for complaint in complaints %}
       <tr>
+          <td>{{ forloop.counter }}</td>
         <td>{{ complaint.userid.username }}</td>
         <td>{{ complaint.description }}</td>
+            <td>{{ complaint.orderdate }}</td>
         <td>{{ complaint.status }}</td>
+      
+         <td>{{ complaint.reason }}</td>
+        
   
         
       </tr>

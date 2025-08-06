@@ -29,12 +29,7 @@
         font-weight: 500;
       }
 
-      input[type="text"],
-      input[type="email"],
-      input[type="password"],
-      input[type="file"],
-      input[type="number"],
-      input[list] ,
+      input,
       select{
         padding: 10px;
         border: 1px solid #ccc;

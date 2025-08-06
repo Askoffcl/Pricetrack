@@ -1,0 +1,118 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block title %}Your Cart{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'products/cart.css' %}">
+<script>
+  function updateQuantity(cartId) {
+    const input = document.getElementById(`qty-${cartId}`);
+    const newQty = parseInt(input.value);
+
+    if (isNaN(newQty) || newQty < 1) {
+      alert("Please enter a valid quantity.");
+      input.value = 1;
+      return;
+    }
+
+    fetch(`/product/cart/update-quantity/${cartId}/`, {
+      method: 'POST',
+      headers: {
+        'X-CSRFToken': '{{ csrf_token }}',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ quantity: newQty })
+    }).then(res => {
+      if (!res.ok) {
+        alert("Failed to update quantity.");
+      } else {
+        location.reload();
+      }
+    });
+  }
+
+  function removeFromCart(cartId) {
+    if (!confirm("Are you sure you want to remove this item from the cart?")) return;
+
+    fetch(`/product/cart/remove/${cartId}/`, {
+      method: 'POST',
+      headers: {
+        'X-CSRFToken': '{{ csrf_token }}'
+      }
+    }).then(res => {
+      if (!res.ok) {
+        alert("Failed to remove item.");
+      } else {
+        location.reload();
+      }
+    });
+  }
+</script>
+{% endblock %}
+
+{% block content %}
+{% include 'side.html' %}
+
+<div class="cart-container">
+  <h2 class="cart-heading">🛒 Your Shopping Cart</h2>
+
+  <div class="table-responsive">
+    <table class="cart-table">
+      <thead>
+        <tr>
+          <th>Image</th>
+          <th>Name</th>
+          <th>Price</th>
+          <th>Store</th>
+          <th>Brand</th>
+          <th>Quantity</th>
+          <th>Total</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for pro in pros %}
+        <tr>
+          <td>
+            {% if pro.productid.image %}
+              <img src="{{ pro.productid.image.url }}" alt="{{ pro.productid.productname }}" class="cart-img">
+            {% else %}
+              <img src="https://via.placeholder.com/120x80?text=No+Image" class="cart-img">
+            {% endif %}
+          </td>
+          <td>
+            <a href="{% url 'productdetail' pro.productid.id %}" class="product-link">{{ pro.productid.productname }}</a>
+          </td>
+          <td>₹{{ pro.productid.price }}</td>
+          <td>{{ pro.productid.shopid.shopname }}</td>
+          <td>{{ pro.productid.productid.brand }}</td>
+          <td>
+            <input type="number" id="qty-{{ pro.id }}" value="{{ pro.quantityAvailable }}" min="1"
+                   class="qty-input" onchange="updateQuantity('{{ pro.id }}')">
+          </td>
+          <td>₹{{ pro.total_price }}</td>
+          <td>
+            <button class="remove-btn btn btn-danger btn-sm" onclick="removeFromCart('{{ pro.id }}')">Remove</button>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+ <div class="checkout-section">
+  <form action="{% url 'checkout_multiple' %}" method="post">
+    {% csrf_token %}
+    {% for pro in pros %}
+      <input type="hidden" name="product_ids" value="{{ pro.productid.id }}">
+    {% endfor %}
+    <button type="submit" class="checkout-btn">
+      Proceed to Checkout = <span>₹{{ total }}</span>
+    </button>
+  </form>
+</div>
+
+</div>
+{% endblock %}
+

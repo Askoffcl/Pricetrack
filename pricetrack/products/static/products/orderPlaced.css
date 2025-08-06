@@ -7,7 +7,7 @@
       border-radius: 10px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.1);
       margin-top: 100px;
-      margin-left: 500px;
+      margin-left: 400px;
       
     }
 
@@ -27,7 +27,7 @@
     }
 
     th, td {
-      padding: 20px;
+      padding: 11px;
       text-align: center;
     }
 
@@ -55,3 +55,22 @@
  .fullop{
   height: 600px;
  }
+ 
+      .d1 button {
+        padding: 10px 20px;
+        background-color: #007bff;
+        border: none;
+        border-radius: 8px;
+        margin-top: 10px;
+        margin-right: 10px;
+      }
+
+      .d1 button a {
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+      }
+
+      .d1 button:hover {
+        background-color: #0056b3;
+      }

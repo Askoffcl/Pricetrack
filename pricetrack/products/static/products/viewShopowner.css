@@ -52,3 +52,9 @@
     flex-direction: column;
 
 }
+.sname {
+  text-decoration: none;
+}
+.sname:hover{
+  text-decoration: underline;
+}

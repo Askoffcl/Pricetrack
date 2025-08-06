@@ -1,0 +1,36 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block title %}
+detail
+{% endblock %}
+   {% block extra_head %}
+   <link rel="stylesheet" href="{% static 'products/productDetail.css' %}">
+  {% endblock %}
+  
+  {% block content %}
+        {% include 'side.html ' %}    
+      <div class="products-grid">
+        <div class="card">
+          {% if pro.image %}
+          <img src="{{ pro.image.url }}" alt="{{ pro.productname }}" />
+          {% else %}
+          <img
+            src="https://via.placeholder.com/300x180?text=No+Image"
+            alt="No Image"
+          />
+          {% endif %}
+    <p><strong>Category:</strong> {{ pro.productid.productcate }}</p>
+          <p><strong>Brand:</strong> {{ pro.productid.brand }}</p>
+          <p><strong>Model:</strong> {{ pro.model }}</p>
+           <p><strong>Color:</strong> {{ pro.color }}</p>
+                    <p><strong>Features:</strong> {{ pro.productid.description }}</p>
+                    <form method="post" action="{% url 'deleteproduct' pro.id %}" style="margin-top: 20px;">
+  {% csrf_token %}
+  <button type="submit" class="btn btn-danger">Delete Product</button>
+</form>
+
+        </div>    
+         
+           
+      </div>   
+{% endblock %}

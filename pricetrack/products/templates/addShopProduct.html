@@ -1,0 +1,38 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block title %}
+Add Product
+{% endblock %}
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'products\addProducts.css' %}">
+ {% endblock %}  
+   
+
+  {% block content %}
+    <main>
+      <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <h1>Add Product</h1>
+
+
+     
+
+        <label for="brand">Color:</label>
+        {{ form.color }}
+
+        <label for="model">Model:</label>
+        {{ form.model }}
+
+    
+        <label for="price">Price:</label>
+        {{ form.price }}
+
+        <label for="image">Image:</label>
+        {{ form.image }}
+        <label for="quantityAvailable">Quantity</label>
+        {{form.quantityAvailable}}
+
+        <button type="submit">Add Product</button>
+      </form>
+    </main>
+ {% endblock %}

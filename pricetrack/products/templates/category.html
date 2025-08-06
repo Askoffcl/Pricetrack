@@ -1,0 +1,44 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'products/category.css' %}">
+{% endblock %}
+
+{% block content %}
+{% include 'side.html' %}
+<div class="cont">
+    <form method="post">
+        {% csrf_token %}
+        <label for="category">Enter Category</label>
+        <input type="text" name="category" id="category" required>
+        <button type="submit">Submit</button>
+    </form>
+    
+    <table>
+         
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Category</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+           {% for ob in ob %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ ob.name }}</td>
+                <td><a href="/product/delete_cat/{{ ob.id}}/" onclick="return confirm('Are you sure to delete this category?')">
+                    DELETE
+                </a></td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="2">No categories added yet.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
